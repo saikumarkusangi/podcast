@@ -10,8 +10,9 @@ class ApiServices {
 //  fetch of restaurents data from api
 
   Future<List<CatergoriesModel>> fetchCollections() async {
-    
+
     Response response = await get(Uri.parse("${endpoint}categories/"));
+
     if (response.statusCode == 200) {
       final List results = jsonDecode(response.body)['data'];
       return results.map((e) => CatergoriesModel.fromJson(e)).toList();

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const Responsive(
           web: WebLandingPage(),
-          mobile: MobileHomePage(),
+          mobile: MobileLandingPage(),
         ));
   }
 }

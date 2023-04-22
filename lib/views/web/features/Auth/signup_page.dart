@@ -6,6 +6,7 @@ import 'package:flutter_application_1/common/common.dart';
 import 'package:flutter_application_1/controllers/button_hover.dart';
 import 'package:flutter_application_1/themes/themes.dart';
 import 'package:flutter_application_1/views/web/features/features.dart';
+import 'package:flutter_application_1/views/web/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controllers/auth_controller.dart';
 
@@ -79,12 +80,18 @@ class WebSignUpPage extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                   CommonTextField(
+                                    color: Colors.black,
+                                    width:  displayWidth(context) / 4,
+                                    borderside: Colors.black45,
                                     controller:emailController ,
                                     hintText: 'Enter your email',
                                     ispass: false,
                                     type: TextInputType.emailAddress,),
                       
                         CommonTextField(
+                          color: Colors.black,
+                          width:  displayWidth(context) / 4,
+                           borderside: Colors.black45,
                           controller: passwordController,
                           hintText: 'Enter your password',
                           ispass: true,type: TextInputType.text,),
@@ -202,12 +209,14 @@ class WebSignUpPage extends ConsumerWidget {
                               delay: 100.ms),
                     SizedBox(
                         width: displayWidth(context) / 2.1,
+                         height: displayHeight(context) * 0.85,
                         child: Image.network(
-                          "https://fastfs1.podbean.com/site/www-v2/images/double/h-feature@2x_resize_1x.png",
-                          fit: BoxFit.cover,
+                          "https://allogy.com/wp-content/uploads/2021/06/podcast.png",
+                          fit: BoxFit.contain,
                         ))
                   ],
                 ),
+                const WebFooter()
               ]),
             ),
           ),
