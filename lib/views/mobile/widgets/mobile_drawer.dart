@@ -7,7 +7,7 @@ class MobileDrawer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return  Drawer(
-      width: displayWidth(context),
+      width: displayWidth(context) * 0.6,
       child: Stack(
         children: 
           [ 

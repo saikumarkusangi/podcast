@@ -4,11 +4,14 @@ import 'package:flutter_application_1/responsive/responsive.dart';
 import 'package:flutter_application_1/views/mobile/features/features.dart';
 import 'package:flutter_application_1/views/web/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'firebase_options.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await JustAudioBackground.init(
+  //   androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+  //   androidNotificationChannelName: 'Audio playback',
+  //   androidNotificationOngoing: true,
+  // );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

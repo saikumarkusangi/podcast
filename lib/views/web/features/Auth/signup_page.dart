@@ -80,6 +80,7 @@ class WebSignUpPage extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                   CommonTextField(
+                                    padding: 50,
                                     color: Colors.black,
                                     width:  displayWidth(context) / 4,
                                     borderside: Colors.black45,
@@ -89,6 +90,7 @@ class WebSignUpPage extends ConsumerWidget {
                                     type: TextInputType.emailAddress,),
                       
                         CommonTextField(
+                          padding: 50,
                           color: Colors.black,
                           width:  displayWidth(context) / 4,
                            borderside: Colors.black45,

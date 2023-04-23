@@ -4,6 +4,7 @@ import 'package:flutter_application_1/common/common.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/themes/themes.dart';
 import 'package:flutter_application_1/views/web/features/Profile/profile_page.dart';
+import 'package:flutter_application_1/views/web/features/categories/categories_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controllers/hover_controller.dart';
 import '../../widgets/widgets.dart';
@@ -14,10 +15,11 @@ class WebLandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ishover = ref.watch(hoverProvider);
-        final currentTab = ref.watch(currentTabProvider);
+    final currentTab = ref.watch(currentTabProvider);
     return GestureDetector(
-      onTap: () =>
-          ishover == 4 ? ref.watch(hoverProvider.notifier).hovered(currentTab) : null,
+      onTap: () => ishover == 4
+          ? ref.watch(hoverProvider.notifier).hovered(currentTab)
+          : null,
       child: Scaffold(
           extendBodyBehindAppBar: true,
           backgroundColor: LightThemes.backgroundColor,
@@ -32,7 +34,7 @@ class WebLandingPage extends ConsumerWidget {
                       ),
                   data: (user) {
                     if (user != null) {
-                      return const CustomAppBar()
+                      return  CustomAppBar()
                           .animate()
                           .fadeIn(delay: 500.ms);
                     }
@@ -60,8 +62,7 @@ class WebLandingPage extends ConsumerWidget {
               child: Stack(
                 children: [
                   ishover == 4
-                      ? const Positioned(
-                          top: 50, right: 0, child: WebProfile())
+                      ? const Positioned(top: 50, right: 0, child: WebProfile())
                       : const SizedBox(),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -113,7 +114,20 @@ class WebLandingPage extends ConsumerWidget {
                                                         .click,
                                                     child: InkWell(
                                                       onTap: () {
-                                                       
+                                                        ref
+                                                            .watch(hoverProvider
+                                                                .notifier)
+                                                            .hovered(1);
+                                                        ref
+                                                            .watch(
+                                                                currentTabProvider
+                                                                    .notifier)
+                                                            .tab(1);
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (_) =>
+                                                                    const WebCategories()));
                                                       },
                                                       child: Container(
                                                         padding:
@@ -140,7 +154,7 @@ class WebLandingPage extends ConsumerWidget {
                                             error: (e, tr) => Center(
                                                   child: Text(e.toString()),
                                                 ),
-                                            loading: () =>const Center(
+                                            loading: () => const Center(
                                                   child:
                                                       CircularProgressIndicator(),
                                                 ))).animate().moveX(
@@ -150,28 +164,25 @@ class WebLandingPage extends ConsumerWidget {
                             ),
                           ),
                           Stack(
-                            children: 
-                                      [
-                                        
-                                        SizedBox(
+                            children: [
+                              SizedBox(
                                       width: displayWidth(context) / 2.1,
                                       height: displayHeight(context) * 0.85,
                                       child: Image.network(
                                         "https://ik.imagekit.io/eztaheq5g/original_36b7e4525d61d6cbf2a3139d38eccced.png?updatedAt=1682183290754",
                                         fit: BoxFit.contain,
                                       ))
-                                .animate()
-                                .moveX(
+                                  .animate()
+                                  .moveX(
                                       begin: -displayWidth(context) / 1.2,
                                       delay: 100.ms),
-                                    ],
+                            ],
                           ),
                         ],
                       ),
-                     const WebFooter()
+                      const WebFooter()
                     ]),
                   ),
-                  
                 ],
               ),
             ),

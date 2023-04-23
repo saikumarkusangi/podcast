@@ -13,8 +13,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../widgets/widgets.dart';
 
-class MobileLoginPage extends ConsumerWidget {
-  MobileLoginPage({super.key});
+class MobileSignUpPage extends ConsumerWidget {
+  MobileSignUpPage({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -28,7 +28,7 @@ class MobileLoginPage extends ConsumerWidget {
         extendBodyBehindAppBar: true,
         backgroundColor: LightThemes.backgroundColor,
         endDrawer: const MobileDrawer(),
-           appBar: PreferredSize(
+            appBar: PreferredSize(
             preferredSize: Size(displayWidth(context), 50),
             child:const  MobileCustomAppBar()),
         body: Container(
@@ -59,10 +59,10 @@ class MobileLoginPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Login",
+                        "Create new account",
                         style: TextStyle(
                           color: Colors.white,
-                            fontWeight: FontWeight.bold, fontSize: 34),
+                            fontWeight: FontWeight.bold, fontSize: 28),
                       ).animate().moveX(
                           begin: -displayWidth(context) / 1.2,
                           delay: 200.ms),
@@ -130,7 +130,7 @@ class MobileLoginPage extends ConsumerWidget {
                                     width: 40,
                                   ),
                                   const Text(
-                                    "Login with Google",
+                                    "signup with Google",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 22,
@@ -181,7 +181,7 @@ class MobileLoginPage extends ConsumerWidget {
                                 ),
                               ),
                               child: const Text(
-                                " Login ",
+                                " Create ",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 24,
@@ -201,10 +201,10 @@ class MobileLoginPage extends ConsumerWidget {
                                   color: Colors.white, fontSize: 18),
                               children: [
                             const TextSpan(
-                                text: "Don't have an account ? "),
+                                text: "Already have an account ? "),
                             TextSpan(
                               
-                                text: "Create one",
+                                text: "Login",
                                 style: const TextStyle(
                                   color: Colors.white,
                                     fontWeight: FontWeight.w600),
@@ -212,7 +212,7 @@ class MobileLoginPage extends ConsumerWidget {
                                   ..onTap = () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (_) => MobileSignUpPage())))
+                                          builder: (_) => MobileLoginPage())))
                           ])).animate().moveX(
                           begin: -displayWidth(context) / 1.2,
                           delay: 500.ms),

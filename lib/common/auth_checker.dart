@@ -20,7 +20,7 @@ class AuthChecker extends ConsumerWidget {
         data: (user) {
           if (user != null) {
             return const Responsive(
-                web: WebHomePage(), mobile: MobileHomePage());
+                web: WebLandingPage(), mobile: MobileHomePage());
           }
 
           return const Responsive(

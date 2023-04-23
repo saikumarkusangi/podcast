@@ -9,6 +9,7 @@ class CommonTextField extends StatelessWidget {
   final Color borderside;
   final double width;
   final Color color;
+  final double padding;
   const CommonTextField(
       {super.key,
       required this.controller,
@@ -17,26 +18,30 @@ class CommonTextField extends StatelessWidget {
       required this.hintText,
       required this.color,
       required this.width,
+      required this.padding,
       required this.ispass});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: Center(
-        child: TextFormField(
-          controller: controller,
-          obscureText: ispass,
-          keyboardType: type,
-          style:  TextStyle(fontSize: 22,color: color),
-          cursorColor: color,
-          decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: borderside, width: 2)),
-              focusedBorder:  OutlineInputBorder(
-                  borderSide: BorderSide(color: color, width: 2)),
-              hintText: hintText,
-              hintStyle:  TextStyle(fontSize: 22,color: color)),
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: padding),
+      child: SizedBox(
+        height: 50,
+        child: Center(
+          child: TextFormField(
+            controller: controller,
+            obscureText: ispass,
+            keyboardType: type,
+            style: TextStyle(fontSize: 22, color: color),
+            cursorColor: color,
+            decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: borderside, width: 2)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: color, width: 2)),
+                hintText: hintText,
+                hintStyle: TextStyle(fontSize: 22, color: color.withOpacity(0.5))),
+          ),
         ),
       ),
     );

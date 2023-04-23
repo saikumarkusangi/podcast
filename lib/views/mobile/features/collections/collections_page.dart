@@ -5,12 +5,13 @@ import 'package:flutter_application_1/models/models.dart';
 import 'package:flutter_application_1/themes/themes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controllers/api_controller.dart';
+import '../../../web/features/Player/player.dart';
 import '../features.dart';
 
-class Collections extends ConsumerWidget {
+class MobileCollections extends ConsumerWidget {
   final String background;
   final String category;
-  const Collections(
+  const MobileCollections(
       {super.key, required this.background, required this.category});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,60 +21,58 @@ class Collections extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.white70, Colors.black54],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(0.5, 0.0),
-                      stops: [0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
-                width: displayWidth(context),
-                height: displayHeight(context) / 3,
-                child: Stack(children: [
-                  Positioned(
-                      left: 85,
-
-                      //  https://www.spiritshunters.com/wp-content/uploads/2018/06/vinyle-blanc.gif
-                      child: Image.network(
-                        'https://ik.imagekit.io/eztaheq5g/186-1868279_disc-record-retro-vinyl-audio-sound-music-retro-removebg-preview.png?updatedAt=1682192919269',
-                        width: 200,
-                      )).animate().moveX(begin: -100, delay: 200.milliseconds),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        width: displayWidth(context) * 0.15,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(background),
-                                fit: BoxFit.cover)),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      category,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          shadows: [
-                            Shadow(
-                                color: Colors.white24,
-                                blurRadius: 10,
-                                offset: Offset(13, 10))
-                          ],
-                          fontWeight: FontWeight.w700,
-                          fontSize: 62),
-                    ),
-                  ),
-                  //  Image.network('https://media0.giphy.com/media/TDlSjxwwM7WYqNf3fh/giphy.gif')
-                ]),
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.white70, Colors.black54],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1, 0.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp),
               ),
+              width: displayWidth(context),
+              height: displayHeight(context) / 4,
+              child: Stack(children: [
+                Positioned(
+                    left: 85,
+                   top: 10,
+                    //  https://www.spiritshunters.com/wp-content/uploads/2018/06/vinyle-blanc.gif
+                    child: Image.network(
+                      'https://ik.imagekit.io/eztaheq5g/186-1868279_disc-record-retro-vinyl-audio-sound-music-retro-removebg-preview.png?updatedAt=1682192919269',
+                      width: 100,
+                    )).animate().moveX(begin: -100, delay: 200.milliseconds),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      width: displayWidth(context) * 0.3,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(background),
+                              fit: BoxFit.cover)),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    category,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                              color: Colors.white24,
+                              blurRadius: 10,
+                              offset: Offset(13, 10))
+                        ],
+                        fontWeight: FontWeight.w700,
+                        fontSize: 32),
+                  ),
+                ),
+                //  Image.network('https://media0.giphy.com/media/TDlSjxwwM7WYqNf3fh/giphy.gif')
+              ]),
             ),
             _data.when(
                 error: (e, tr) => Center(
@@ -83,9 +82,9 @@ class Collections extends ConsumerWidget {
                       child: CircularProgressIndicator(),
                     ),
                 data: (_data) {
-                  List<PodcastModel> collections = _data.map((e) => e).toList();
+                  List<PodcastModel> MobileCollections = _data.map((e) => e).toList();
                   
-                  return (collections.isEmpty)
+                  return (MobileCollections.isEmpty)
                       ? Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,13 +106,13 @@ class Collections extends ConsumerWidget {
                         )
                       : Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
+                              horizontal: 10, vertical: 20),
                           child: GridView.builder(
-                              itemCount: collections.length,
+                              itemCount: MobileCollections.length,
                               shrinkWrap: true,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 4,
+                                crossAxisCount: 2,
                               ),
                               itemBuilder: (context, index) {
                                 return Padding(
@@ -122,7 +121,7 @@ class Collections extends ConsumerWidget {
                                   child: Column(
                                     children: [
                                       SizedBox(
-                                        height: 200,
+                                        height: 120,
                                         child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -133,28 +132,28 @@ class Collections extends ConsumerWidget {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (_) =>
-                                                              WebPlayer(
-                                                                name: collections[index].name,
-                                                                descriptions: collections[index].description,
-                                                                data: collections[index].data,
-                                                                cover_pic: collections[index].coverPic,
-                                                                speaker: collections[index].speaker,
+                                                              MobilePlayer(
+                                                                name: MobileCollections[index].name,
+                                                                descriptions: MobileCollections[index].description,
+                                                                data: MobileCollections[index].data,
+                                                                cover_pic: MobileCollections[index].coverPic,
+                                                                speaker: MobileCollections[index].speaker,
                                                                )));
                                                 },
                                                 child: Image.network(
-                                                  collections[index].coverPic,
+                                                  MobileCollections[index].coverPic,
                                                   fit: BoxFit.cover,
                                                 ))).animate().flipH(
                                             duration: 80.milliseconds),
                                       ),
                                       const SizedBox(
-                                        height: 15,
+                                        height: 10,
                                       ),
                                       Text(
-                                        collections[index].name,
+                                        MobileCollections[index].name,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.white,
                                             overflow: TextOverflow.ellipsis),
                                         maxLines: 1,

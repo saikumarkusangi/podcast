@@ -47,7 +47,7 @@ class MobilAuthWidget extends ConsumerWidget {
           cursor: SystemMouseCursors.click,
           child: InkWell(
             onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => MobileHomePage())),
+                context, MaterialPageRoute(builder: (_) => MobileSignUpPage())),
             child: Container(
               width: displayWidth(context),
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),

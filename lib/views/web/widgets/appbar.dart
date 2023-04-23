@@ -6,8 +6,8 @@ import '../../../controllers/controllers.dart';
 import '../features/features.dart';
 
 class CustomAppBar extends ConsumerWidget {
-  const CustomAppBar({super.key});
-
+   CustomAppBar({super.key});
+  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ishover = ref.watch(hoverProvider);
@@ -26,28 +26,30 @@ class CustomAppBar extends ConsumerWidget {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             onEnter: (event) => ref.read(hoverProvider.notifier).hovered(0),
-            onExit: (event) => ref.read(hoverProvider.notifier).hovered(currentTab),
+            onExit: (event) =>
+                ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
-              onTap: (){
-                 ref.read(currentTabProvider.notifier).tab(0);
-                  Navigator.push(context,
+              onTap: () {
+                ref.read(currentTabProvider.notifier).tab(0);
+                Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const WebLandingPage()));
               },
               child: Text(
                 "Home",
                 style: TextStyle(
-                  color: currentTab == 0 || ishover==0
+                  color: currentTab == 0 || ishover == 0
                       ? LightThemes.headingtextColor
                       : LightThemes.subtextColor,
-                  fontSize:  currentTab == 0  || ishover==0? 20 : 14,
+                  fontSize: currentTab == 0 || ishover == 0 ? 20 : 14,
                 ),
               ),
             ),
           ),
           MouseRegion(
             cursor: SystemMouseCursors.click,
-          onEnter: (event) => ref.read(hoverProvider.notifier).hovered(1),
-            onExit: (event) => ref.read(hoverProvider.notifier).hovered(currentTab),
+            onEnter: (event) => ref.read(hoverProvider.notifier).hovered(1),
+            onExit: (event) =>
+                ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
               onTap: () {
                 ref.read(currentTabProvider.notifier).tab(1);
@@ -60,7 +62,7 @@ class CustomAppBar extends ConsumerWidget {
                   color: currentTab == 1 || ishover == 1
                       ? LightThemes.headingtextColor
                       : LightThemes.subtextColor,
-                  fontSize: currentTab == 1  || ishover ==1? 20 : 14,
+                  fontSize: currentTab == 1 || ishover == 1 ? 20 : 14,
                 ),
               ),
             ),
@@ -68,37 +70,39 @@ class CustomAppBar extends ConsumerWidget {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             onEnter: (event) => ref.read(hoverProvider.notifier).hovered(2),
-            onExit: (event) => ref.read(hoverProvider.notifier).hovered(currentTab),
+            onExit: (event) =>
+                ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
-              onTap: (){
-                 ref.read(currentTabProvider.notifier).tab(1);
+              onTap: () {
+                ref.read(currentTabProvider.notifier).tab(1);
               },
               child: Text(
                 "Trending",
                 style: TextStyle(
-                  color: currentTab == 2  || ishover ==2
+                  color: currentTab == 2 || ishover == 2
                       ? LightThemes.headingtextColor
                       : LightThemes.subtextColor,
-                  fontSize:  currentTab == 2  || ishover ==2? 20 : 14,
+                  fontSize: currentTab == 2 || ishover == 2 ? 20 : 14,
                 ),
               ),
             ),
           ),
           MouseRegion(
             cursor: SystemMouseCursors.click,
-          onEnter: (event) => ref.read(hoverProvider.notifier).hovered(3),
-            onExit: (event) => ref.read(hoverProvider.notifier).hovered(currentTab),
+            onEnter: (event) => ref.read(hoverProvider.notifier).hovered(3),
+            onExit: (event) =>
+                ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
-              onTap: (){
-                 ref.read(currentTabProvider.notifier).tab(1);
+              onTap: () {
+                ref.read(currentTabProvider.notifier).tab(1);
               },
               child: Text(
                 "Favourites",
                 style: TextStyle(
-                  color: currentTab == 3 || ishover==3
+                  color: currentTab == 3 || ishover == 3
                       ? LightThemes.headingtextColor
                       : LightThemes.subtextColor,
-                  fontSize:  currentTab == 3  || ishover==3? 20 : 14,
+                  fontSize: currentTab == 3 || ishover == 3 ? 20 : 14,
                 ),
               ),
             ),
@@ -114,6 +118,9 @@ class CustomAppBar extends ConsumerWidget {
               title: Padding(
                 padding: const EdgeInsets.only(left: 5.0),
                 child: TextFormField(
+                  onFieldSubmitted: (value) => (value.isNotEmpty) ? Navigator.push(context, 
+                  MaterialPageRoute(builder: (_)=>  WebHomePage(query: searchController.text,))) : null,
+                  controller: searchController,
                   cursorColor: Colors.black87,
                   style: const TextStyle(fontSize: 18),
                   decoration: const InputDecoration.collapsed(
@@ -125,22 +132,21 @@ class CustomAppBar extends ConsumerWidget {
               ),
             ),
           ),
-           Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: InkWell(
-                        onTap: () {
-                         ref.read(hoverProvider.notifier).hovered(4);
-                        },
-                        child: const Icon(
-                          Icons.person,
-                          size: 36,
-                        ),
-                      ),
-                    ),
-                  )
-        
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: InkWell(
+                onTap: () {
+                  ref.read(hoverProvider.notifier).hovered(4);
+                },
+                child: const Icon(
+                  Icons.person,
+                  size: 36,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
