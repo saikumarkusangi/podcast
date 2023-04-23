@@ -145,7 +145,7 @@ class MobileLandingPage extends ConsumerWidget {
                                   child:
                                       ref.watch(authStateChangeProvider).when(
                                           data: (user) {
-                                            if (user == null) {
+                                            if (user != null) {
                                               return Center(
                                                 child: MouseRegion(
                                                   cursor: SystemMouseCursors
