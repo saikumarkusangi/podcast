@@ -84,7 +84,7 @@ class Collections extends ConsumerWidget {
                     ),
                 data: (_data) {
                   List<PodcastModel> collections = _data.map((e) => e).toList();
-                  
+
                   return (collections.isEmpty)
                       ? Center(
                           child: Column(
@@ -128,18 +128,41 @@ class Collections extends ConsumerWidget {
                                                 BorderRadius.circular(10),
                                             child: InkWell(
                                                 onTap: () {
-
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              WebPlayer(
-                                                                name: collections[index].name,
-                                                                descriptions: collections[index].description,
-                                                                data: collections[index].data,
-                                                                cover_pic: collections[index].coverPic,
-                                                                speaker: collections[index].speaker,
-                                                               )));
+                                                  collections[index].type == 'A'
+                                                      ? Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (_) =>
+                                                                      WebPlayer(
+                                                                        name: collections[index]
+                                                                            .name,
+                                                                        descriptions:
+                                                                            collections[index].description,
+                                                                        data: collections[index]
+                                                                            .data,
+                                                                        cover_pic:
+                                                                            collections[index].coverPic,
+                                                                        speaker:
+                                                                            collections[index].speaker,
+                                                                      )))
+                                                      : Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (_) =>
+                                                                      WebVideoPlayer(
+                                                                        name: collections[index]
+                                                                            .name,
+                                                                        descriptions:
+                                                                            collections[index].description,
+                                                                        data: collections[index]
+                                                                            .data,
+                                                                        cover_pic:
+                                                                            collections[index].coverPic,
+                                                                        speaker:
+                                                                            collections[index].speaker,
+                                                                      )));
                                                 },
                                                 child: Image.network(
                                                   collections[index].coverPic,

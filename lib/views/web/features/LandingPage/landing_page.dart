@@ -61,9 +61,7 @@ class WebLandingPage extends ConsumerWidget {
             child: SingleChildScrollView(
               child: Stack(
                 children: [
-                  ishover == 4
-                      ? const Positioned(top: 50, right: 0, child: WebProfile())
-                      : const SizedBox(),
+               
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 40, vertical: 60),
@@ -183,6 +181,9 @@ class WebLandingPage extends ConsumerWidget {
                       const WebFooter()
                     ]),
                   ),
+                     ishover == 4
+                      ? const Positioned(top: 50, right: 0, child: WebProfile())
+                      : const SizedBox(),
                 ],
               ),
             ),

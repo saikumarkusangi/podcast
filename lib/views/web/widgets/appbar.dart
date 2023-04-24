@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/common.dart';
 import 'package:flutter_application_1/themes/themes.dart';
+import 'package:flutter_application_1/views/web/features/Trending/trending.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../controllers/controllers.dart';
 import '../features/features.dart';
 
 class CustomAppBar extends ConsumerWidget {
-   CustomAppBar({super.key});
+  CustomAppBar({super.key});
   TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -74,7 +75,11 @@ class CustomAppBar extends ConsumerWidget {
                 ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
               onTap: () {
-                ref.read(currentTabProvider.notifier).tab(1);
+                ref.read(currentTabProvider.notifier).tab(2);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => WebTrendingPage(category: 'story')));
               },
               child: Text(
                 "Trending",
@@ -94,7 +99,7 @@ class CustomAppBar extends ConsumerWidget {
                 ref.read(hoverProvider.notifier).hovered(currentTab),
             child: InkWell(
               onTap: () {
-                ref.read(currentTabProvider.notifier).tab(1);
+                ref.read(currentTabProvider.notifier).tab(3);
               },
               child: Text(
                 "Favourites",
@@ -118,8 +123,14 @@ class CustomAppBar extends ConsumerWidget {
               title: Padding(
                 padding: const EdgeInsets.only(left: 5.0),
                 child: TextFormField(
-                  onFieldSubmitted: (value) => (value.isNotEmpty) ? Navigator.push(context, 
-                  MaterialPageRoute(builder: (_)=>  WebHomePage(query: searchController.text,))) : null,
+                  onFieldSubmitted: (value) => (value.isNotEmpty)
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => WebHomePage(
+                                    query: searchController.text,
+                                  )))
+                      : null,
                   controller: searchController,
                   cursorColor: Colors.black87,
                   style: const TextStyle(fontSize: 18),

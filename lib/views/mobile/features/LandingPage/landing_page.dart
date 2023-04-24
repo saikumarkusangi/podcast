@@ -25,10 +25,48 @@ class MobileLandingPage extends ConsumerWidget {
       child: Scaffold(
           extendBodyBehindAppBar: true,
           backgroundColor: LightThemes.backgroundColor,
-          endDrawer: const MobileDrawer(),
+          endDrawer: ref.watch(authStateChangeProvider).when(
+              loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+              error: (e, tr) => Center(
+                    child: Text(e.toString()),
+                  ),
+              data: (user) {
+                if (user != null) {
+                  return const MobileDrawer();
+                } else {
+                  return Drawer(
+                    backgroundColor: Colors.black,
+                    width: displayWidth(context),
+                   child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.white,
+                    size: 32,
+                  )),
+            ),
+            
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const[
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 20),
+                child:   MobilAuthWidget(),
+              ),
+            ],
+          )]
+                   ));
+                }
+              }),
           appBar: PreferredSize(
-            preferredSize: Size(displayWidth(context), 50),
-            child:const  MobileCustomAppBar()),
+              preferredSize: Size(displayWidth(context), 50),
+              child: const MobileCustomAppBar()),
           // appBar: PreferredSize(
           //     preferredSize: Size(displayWidth(context), 60),
           //     child: ref.watch(authStateChangeProvider).when(

@@ -5,7 +5,7 @@ import 'package:just_audio/just_audio.dart';
 class Controller extends ConsumerStatefulWidget {
   final AudioPlayer audioPlayer;
   final double width;
-  const Controller({super.key, required this.audioPlayer,required this.width});
+  const Controller({super.key, required this.audioPlayer, required this.width});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ControllerState();
 }
@@ -16,14 +16,22 @@ class _ControllerState extends ConsumerState<Controller> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-         SizedBox(
-          width: widget.width,
+        SizedBox(
+          width: widget.width / 3,
         ),
-        IconButton(
-            iconSize: 50,
-            color: Colors.white,
-            onPressed: widget.audioPlayer.seekToPrevious,
-            icon: const Icon(Icons.skip_previous)),
+        Positioned(
+          bottom: 20,
+          child: InkWell(
+            onTap: () async {
+              await widget.audioPlayer.seek(Duration(seconds:widget.audioPlayer.position.inSeconds -10));
+            },
+            child: Image.network(
+              'https://ik.imagekit.io/eztaheq5g/rewind.png?updatedAt=1682312973547',
+              width: 52,
+              color: Colors.white,
+            ),
+          ),
+        ),
         StreamBuilder<PlayerState>(
             stream: widget.audioPlayer.playerStateStream,
             builder: (context, snapshot) {
@@ -55,13 +63,18 @@ class _ControllerState extends ConsumerState<Controller> {
                   onPressed: widget.audioPlayer.pause,
                   icon: const Icon(Icons.play_circle));
             }),
-        IconButton(
-            iconSize: 50,
+        InkWell(
+          onTap: () async {
+            await widget.audioPlayer.seek( Duration(seconds:widget.audioPlayer.position.inSeconds + 10));
+          },
+          child: Image.network(
+            'https://ik.imagekit.io/eztaheq5g/178695678616352400964513-512.png?updatedAt=1682313302557',
+            width: 40,
             color: Colors.white,
-            onPressed: widget.audioPlayer.seekToNext,
-            icon: const Icon(Icons.skip_next)),
-         SizedBox(
-          width: widget.width,
+          ),
+        ),
+        SizedBox(
+          width: widget.width / 4,
         ),
         IconButton(
             onPressed: () {},

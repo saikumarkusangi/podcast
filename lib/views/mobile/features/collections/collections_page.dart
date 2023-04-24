@@ -3,9 +3,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_application_1/common/sizes.dart';
 import 'package:flutter_application_1/models/models.dart';
 import 'package:flutter_application_1/themes/themes.dart';
+import 'package:flutter_application_1/views/web/features/collections/collections.dart';
+import 'package:flutter_application_1/views/web/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controllers/api_controller.dart';
-import '../../../web/features/Player/player.dart';
+import '../../../web/features/Player/audioplayer.dart';
 import '../features.dart';
 
 class MobileCollections extends ConsumerWidget {
@@ -35,7 +37,7 @@ class MobileCollections extends ConsumerWidget {
               child: Stack(children: [
                 Positioned(
                     left: 85,
-                   top: 10,
+                    top: 10,
                     //  https://www.spiritshunters.com/wp-content/uploads/2018/06/vinyle-blanc.gif
                     child: Image.network(
                       'https://ik.imagekit.io/eztaheq5g/186-1868279_disc-record-retro-vinyl-audio-sound-music-retro-removebg-preview.png?updatedAt=1682192919269',
@@ -82,8 +84,9 @@ class MobileCollections extends ConsumerWidget {
                       child: CircularProgressIndicator(),
                     ),
                 data: (_data) {
-                  List<PodcastModel> MobileCollections = _data.map((e) => e).toList();
-                  
+                  List<PodcastModel> MobileCollections =
+                      _data.map((e) => e).toList();
+
                   return (MobileCollections.isEmpty)
                       ? Center(
                           child: Column(
@@ -123,34 +126,59 @@ class MobileCollections extends ConsumerWidget {
                                       SizedBox(
                                         height: 120,
                                         child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: InkWell(
-                                                onTap: () {
-
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              MobilePlayer(
-                                                                name: MobileCollections[index].name,
-                                                                descriptions: MobileCollections[index].description,
-                                                                data: MobileCollections[index].data,
-                                                                cover_pic: MobileCollections[index].coverPic,
-                                                                speaker: MobileCollections[index].speaker,
-                                                               )));
-                                                },
-                                                child: Image.network(
-                                                  MobileCollections[index].coverPic,
-                                                  fit: BoxFit.cover,
-                                                ))).animate().flipH(
-                                            duration: 80.milliseconds),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: InkWell(
+                                                    onTap: () {
+                                                      MobileCollections[index]
+                                                                  .type ==
+                                                              'A'
+                                                          ? Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      MobilePlayer(
+                                                                        name: MobileCollections[index]
+                                                                            .name,
+                                                                        descriptions:
+                                                                            MobileCollections[index].description,
+                                                                        data: MobileCollections[index]
+                                                                            .data,
+                                                                        cover_pic:
+                                                                            MobileCollections[index].coverPic,
+                                                                        speaker:
+                                                                            MobileCollections[index].speaker,
+                                                                      )))
+                                                          : Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      WebVideoPlayer(
+                                                                        name: MobileCollections[index]
+                                                                            .name,
+                                                                        descriptions:
+                                                                            MobileCollections[index].description,
+                                                                        data: MobileCollections[index]
+                                                                            .data,
+                                                                        cover_pic:
+                                                                            MobileCollections[index].coverPic,
+                                                                        speaker:
+                                                                            MobileCollections[index].speaker,
+                                                                      )));
+                                                    },
+                                                    child: Image.network(
+                                                      MobileCollections[index]
+                                                          .coverPic,
+                                                      fit: BoxFit.cover,
+                                                    )))
+                                            .animate()
+                                            .flipH(duration: 80.milliseconds),
                                       ),
                                       const SizedBox(
                                         height: 10,
                                       ),
                                       Text(
-                                        MobileCollections[index].name,
+                                        MobileCollections[index].speaker,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,

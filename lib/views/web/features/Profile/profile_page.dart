@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,8 +11,8 @@ class WebProfile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTab = ref.watch(currentTabProvider);
     return Container(
-      height: 120,
-      width: 100,
+      height: 150,
+      width: 150,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -21,9 +22,9 @@ class WebProfile extends ConsumerWidget {
             cursor: SystemMouseCursors.click,
             child: InkWell(
               onTap: () {},
-              child: const Text(
-                'Profile',
-                style: TextStyle(fontSize: 18),
+              child:  Text(
+                FirebaseAuth.instance.currentUser!.email!.split('@')[0],
+                style:const TextStyle(fontSize: 18),
               ),
             ),
           ),

@@ -8,7 +8,7 @@ import '../../../../controllers/hover_controller.dart';
 import '../../../../models/models.dart';
 import '../../../../themes/themes.dart';
 import '../../widgets/appbar.dart';
-import '../Player/player.dart';
+import '../Player/audioplayer.dart';
 import '../collections/collections.dart';
 
 class WebHomePage extends ConsumerWidget {

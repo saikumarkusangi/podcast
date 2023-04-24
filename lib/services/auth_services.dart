@@ -1,4 +1,3 @@
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +19,13 @@ class AuthServices {
           email: email, password: password);
       customSnackBar(context, 'Yup!', 'New Account Created Successfully',
           ContentType.success);
-          Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const Responsive(
-              web: WebLandingPage(),
-            mobile: MobileLandingPage(),
-          )));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => const Responsive(
+                    web: WebLandingPage(),
+                    mobile: MobileLandingPage(),
+                  )));
       return result.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -53,10 +54,12 @@ class AuthServices {
       customSnackBar(
           context, 'Yup!', 'Your are login successfull.', ContentType.success);
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const Responsive(
-            web: WebLandingPage(),
-            mobile: MobileLandingPage(),
-          )));
+          context,
+          MaterialPageRoute(
+              builder: (_) => const Responsive(
+                    web: WebLandingPage(),
+                    mobile: MobileLandingPage(),
+                  )));
       return result.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -82,5 +85,15 @@ class AuthServices {
     customSnackBar(context, 'Yup!', 'You are logged out successfull.',
         ContentType.success);
   }
-}
 
+  Future<void> delete(context) async {
+    await _auth.currentUser!.delete();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => const Responsive(
+                web: WebLandingPage(), mobile: MobileLandingPage())));
+    customSnackBar(
+        context, 'Yup!', 'Accound deleted  successfull.', ContentType.success);
+  }
+}

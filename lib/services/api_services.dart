@@ -11,10 +11,10 @@ class ApiServices {
 
   Future<List<CatergoriesModel>> fetchCollections() async {
     Response response = await get(Uri.parse("${endpoint}categories/?search="));
-
+  
     if (response.statusCode == 200) {
       final List results = jsonDecode(response.body);
-     
+
       return results.map((e) => CatergoriesModel.fromJson(e)).toList();
     } else {
       throw Exception(response.reasonPhrase);
@@ -22,18 +22,6 @@ class ApiServices {
   }
 
   Future<List<PodcastModel>> fetchPodcast(search) async {
-    Response response =
-        await get(Uri.parse("${endpoint}podcasts/?search=$search"));
-
-    if (response.statusCode == 200) {
-      final List results = jsonDecode(response.body);
-      return results.map((e) => PodcastModel.fromJson(e)).toList();
-    } else {
-      throw Exception(response.reasonPhrase);
-    }
-  }
-
-  Future<List<PodcastModel>> movie({required String search}) async {
     Response response =
         await get(Uri.parse("${endpoint}podcasts/?search=$search"));
 
