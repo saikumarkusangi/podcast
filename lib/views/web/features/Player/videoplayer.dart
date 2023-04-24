@@ -35,7 +35,7 @@ class _WebVideoPlayerState extends ConsumerState<WebVideoPlayer> {
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.network('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4');
+    _videoPlayerController = VideoPlayerController.network(widget.data);
     _chewieController = ChewieController(
         autoPlay: true,
         allowFullScreen: false,
