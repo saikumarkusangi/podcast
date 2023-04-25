@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_application_1/common/sizes.dart';
 import 'package:flutter_application_1/models/models.dart';
 import 'package:flutter_application_1/themes/themes.dart';
+import 'package:flutter_application_1/views/web/features/details/details.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controllers/api_controller.dart';
 import '../features.dart';
@@ -83,7 +84,21 @@ class Collections extends ConsumerWidget {
                       child: CircularProgressIndicator(),
                     ),
                 data: (_data) {
-                  List<PodcastModel> collections = _data.map((e) => e).toList();
+                  List<PodcastModel> collections = _data.map((e) {
+                    return e;
+                  }).toList();
+
+                  List channels = [];
+                  List cover = [];
+                  for (var item in collections) {
+                    print(item.channel);
+                    if (channels.contains(item.channel)) {
+                    } else {
+                      channels.add(item.channel);
+                      cover.add(item.coverPic);
+                    }
+
+                  }
 
                   return (collections.isEmpty)
                       ? Center(
@@ -109,7 +124,7 @@ class Collections extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 20),
                           child: GridView.builder(
-                              itemCount: collections.length,
+                              itemCount: channels.length,
                               shrinkWrap: true,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
@@ -124,57 +139,32 @@ class Collections extends ConsumerWidget {
                                       SizedBox(
                                         height: 200,
                                         child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: InkWell(
-                                                onTap: () {
-                                                  collections[index].type == 'A'
-                                                      ? Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (_) =>
-                                                                      WebPlayer(
-                                                                        name: collections[index]
-                                                                            .name,
-                                                                        descriptions:
-                                                                            collections[index].description,
-                                                                        data: collections[index]
-                                                                            .data,
-                                                                        cover_pic:
-                                                                            collections[index].coverPic,
-                                                                        speaker:
-                                                                            collections[index].speaker,
-                                                                      )))
-                                                      : Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (_) =>
-                                                                      WebVideoPlayer(
-                                                                        name: collections[index]
-                                                                            .name,
-                                                                        descriptions:
-                                                                            collections[index].description,
-                                                                        data: collections[index]
-                                                                            .data,
-                                                                        cover_pic:
-                                                                            collections[index].coverPic,
-                                                                        speaker:
-                                                                            collections[index].speaker,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: InkWell(
+                                                    onTap: () {
+                                                       Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      webDetails(
+                                                                        channel: channels[index],
+                                                                        cover_pic: cover[index],
                                                                       )));
-                                                },
-                                                child: Image.network(
-                                                  collections[index].coverPic,
-                                                  fit: BoxFit.cover,
-                                                ))).animate().flipH(
-                                            duration: 80.milliseconds),
+                                                    },
+                                                    child: Image.network(
+                                                      cover[index],
+                                                          
+                                                      fit: BoxFit.cover,
+                                                    )))
+                                            .animate()
+                                            .flipH(duration: 80.milliseconds),
                                       ),
                                       const SizedBox(
                                         height: 15,
                                       ),
                                       Text(
-                                        collections[index].name,
+                                        channels[index],
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 18,

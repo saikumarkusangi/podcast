@@ -95,11 +95,11 @@ class WebHomePage extends ConsumerWidget {
                                                                   builder: (_) =>
                                                                       WebPlayer(
                                                                         name: collections[index]
-                                                                            .name,
+                                                                            .title,
                                                                         descriptions:
                                                                             collections[index].description,
                                                                         data: collections[index]
-                                                                            .data,
+                                                                            .media,
                                                                         cover_pic:
                                                                             collections[index].coverPic,
                                                                         speaker:
@@ -117,7 +117,7 @@ class WebHomePage extends ConsumerWidget {
                                                 height: 15,
                                               ),
                                               Text(
-                                                collections[index].name,
+                                                collections[index].title,
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18,

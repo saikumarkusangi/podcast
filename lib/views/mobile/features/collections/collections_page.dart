@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_application_1/common/sizes.dart';
 import 'package:flutter_application_1/models/models.dart';
 import 'package:flutter_application_1/themes/themes.dart';
+import 'package:flutter_application_1/views/mobile/features/details/details.dart';
 import 'package:flutter_application_1/views/web/features/collections/collections.dart';
 import 'package:flutter_application_1/views/web/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,7 +87,17 @@ class MobileCollections extends ConsumerWidget {
                 data: (_data) {
                   List<PodcastModel> MobileCollections =
                       _data.map((e) => e).toList();
+                    List channels = [];
+                  List cover = [];
+                  for (var item in MobileCollections) {
+                    print(item.channel);
+                    if (channels.contains(item.channel)) {
+                    } else {
+                      channels.add(item.channel);
+                      cover.add(item.coverPic);
+                    }
 
+                  }
                   return (MobileCollections.isEmpty)
                       ? Center(
                           child: Column(
@@ -111,7 +122,7 @@ class MobileCollections extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           child: GridView.builder(
-                              itemCount: MobileCollections.length,
+                              itemCount: channels.length,
                               shrinkWrap: true,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
@@ -130,45 +141,18 @@ class MobileCollections extends ConsumerWidget {
                                                     BorderRadius.circular(10),
                                                 child: InkWell(
                                                     onTap: () {
-                                                      MobileCollections[index]
-                                                                  .type ==
-                                                              'A'
-                                                          ? Navigator.push(
+                                                      Navigator.push(
                                                               context,
                                                               MaterialPageRoute(
                                                                   builder: (_) =>
-                                                                      MobilePlayer(
-                                                                        name: MobileCollections[index]
-                                                                            .name,
-                                                                        descriptions:
-                                                                            MobileCollections[index].description,
-                                                                        data: MobileCollections[index]
-                                                                            .data,
-                                                                        cover_pic:
-                                                                            MobileCollections[index].coverPic,
-                                                                        speaker:
-                                                                            MobileCollections[index].speaker,
-                                                                      )))
-                                                          : Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder: (_) =>
-                                                                      WebVideoPlayer(
-                                                                        name: MobileCollections[index]
-                                                                            .name,
-                                                                        descriptions:
-                                                                            MobileCollections[index].description,
-                                                                        data: MobileCollections[index]
-                                                                            .data,
-                                                                        cover_pic:
-                                                                            MobileCollections[index].coverPic,
-                                                                        speaker:
-                                                                            MobileCollections[index].speaker,
+                                                                      MobileDetails(
+                                                                       cover_pic:cover[index],
+                                                                       channel: channels[index],
                                                                       )));
                                                     },
                                                     child: Image.network(
-                                                      MobileCollections[index]
-                                                          .coverPic,
+                                                      cover[index]
+                                                        ,
                                                       fit: BoxFit.cover,
                                                     )))
                                             .animate()
@@ -178,7 +162,7 @@ class MobileCollections extends ConsumerWidget {
                                         height: 10,
                                       ),
                                       Text(
-                                        MobileCollections[index].speaker,
+                                        channels[index],
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,

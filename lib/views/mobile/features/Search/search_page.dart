@@ -69,14 +69,14 @@ class SearchPage extends ConsumerWidget {
                                                                 MobilePlayer(
                                                                   name: collections[
                                                                           index]
-                                                                      .name,
+                                                                      .title,
                                                                   descriptions:
                                                                       collections[
                                                                               index]
                                                                           .description,
                                                                   data: collections[
                                                                           index]
-                                                                      .data,
+                                                                      .media,
                                                                   cover_pic: collections[
                                                                           index]
                                                                       .coverPic,
@@ -96,7 +96,7 @@ class SearchPage extends ConsumerWidget {
                                       height: 10,
                                     ),
                                     Text(
-                                      collections[index].name,
+                                      collections[index].title,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 16,

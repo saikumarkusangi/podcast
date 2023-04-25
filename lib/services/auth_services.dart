@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/snackbar.dart';
 import 'package:flutter_application_1/responsive/responsive.dart';
@@ -95,5 +96,38 @@ class AuthServices {
                 web: WebLandingPage(), mobile: MobileLandingPage())));
     customSnackBar(
         context, 'Yup!', 'Accound deleted  successfull.', ContentType.success);
+  }
+
+    Future<User?> signInWithGoogle({required BuildContext context}) async {
+  
+    User? user;
+
+    if (kIsWeb) {
+      GoogleAuthProvider authProvider = GoogleAuthProvider();
+
+      try {
+        final UserCredential userCredential =
+            await _auth.signInWithPopup(authProvider);
+
+        user = userCredential.user;
+         customSnackBar(
+          context, 'Yup!', 'Your are login successfull.', ContentType.success);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => const Responsive(
+                    web: WebLandingPage(),
+                    mobile: MobileLandingPage(),
+                  )));
+      } catch (e) {
+        print(e);
+         customSnackBar(
+            context,
+            'Warning!',
+            'Sorry! something went wrong.Please try again.',
+            ContentType.warning);
+      }
+    } 
+    return user;
   }
 }

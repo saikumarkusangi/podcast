@@ -129,11 +129,11 @@ class WebTrendingPage extends ConsumerWidget {
                                                                         (_) =>
                                                                             WebPlayer(
                                                                               name: WebTrendingPage[index]
-                                                                                  .name,
+                                                                                  .title,
                                                                               descriptions:
                                                                                   WebTrendingPage[index].description,
                                                                               data: WebTrendingPage[index]
-                                                                                  .data,
+                                                                                  .media,
                                                                               cover_pic:
                                                                                   WebTrendingPage[index].coverPic,
                                                                               speaker:
@@ -146,11 +146,11 @@ class WebTrendingPage extends ConsumerWidget {
                                                                         (_) =>
                                                                             WebVideoPlayer(
                                                                               name: WebTrendingPage[index]
-                                                                                  .name,
+                                                                                  .title,
                                                                               descriptions:
                                                                                   WebTrendingPage[index].description,
                                                                               data: WebTrendingPage[index]
-                                                                                  .data,
+                                                                                  .media,
                                                                               cover_pic:
                                                                                   WebTrendingPage[index].coverPic,
                                                                               speaker:
@@ -167,7 +167,7 @@ class WebTrendingPage extends ConsumerWidget {
                                               height: 15,
                                             ),
                                             Text(
-                                              WebTrendingPage[index].name,
+                                              WebTrendingPage[index].title,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 18,

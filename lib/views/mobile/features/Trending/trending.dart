@@ -96,9 +96,9 @@ class MobileTrendingPage extends ConsumerWidget {
                                                       MaterialPageRoute(
                                                           builder: (_) =>
                                                               MobilePlayer(
-                                                                name: MobileTrendingPage[index].name,
+                                                                name: MobileTrendingPage[index].title,
                                                                 descriptions: MobileTrendingPage[index].description,
-                                                                data: MobileTrendingPage[index].data,
+                                                                data: MobileTrendingPage[index].media,
                                                                 cover_pic: MobileTrendingPage[index].coverPic,
                                                                 speaker: MobileTrendingPage[index].speaker,
                                                                ))):
@@ -107,9 +107,9 @@ class MobileTrendingPage extends ConsumerWidget {
                                                       MaterialPageRoute(
                                                           builder: (_) =>
                                                               WebVideoPlayer(
-                                                                name: MobileTrendingPage[index].name,
+                                                                name: MobileTrendingPage[index].title,
                                                                 descriptions: MobileTrendingPage[index].description,
-                                                                data: MobileTrendingPage[index].data,
+                                                                data: MobileTrendingPage[index].media,
                                                                 cover_pic: MobileTrendingPage[index].coverPic,
                                                                 speaker: MobileTrendingPage[index].speaker,
                                                                )));
@@ -124,7 +124,7 @@ class MobileTrendingPage extends ConsumerWidget {
                                         height: 10,
                                       ),
                                       Text(
-                                        MobileTrendingPage[index].name,
+                                        MobileTrendingPage[index].title,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,

@@ -10,40 +10,44 @@ String podcastModelToJson(List<PodcastModel> data) => json.encode(List<dynamic>.
 
 class PodcastModel {
     PodcastModel({
-        required this.name,
+        required this.title,
         required this.category,
-        required this.data,
+        required this.media,
         required this.type,
         required this.speaker,
         required this.description,
         required this.coverPic,
+        required this.channel,
     });
 
-    String name;
+    String title;
     String category;
-    String data;
+    String media;
     String type;
     String speaker;
     String description;
     String coverPic;
+    String channel;
 
     factory PodcastModel.fromJson(Map<String, dynamic> json) => PodcastModel(
-        name: json["name"],
+        title: json["title"],
         category: json["category"],
-        data: json["data"],
+        media: json["media"],
         type: json["type"],
         speaker: json["speaker"],
         description: json["description"],
         coverPic: json["cover_pic"],
+        channel: json["channel"],
     );
 
     Map<String, dynamic> toJson() => {
-        "name": name,
+        "title": title,
         "category": category,
-        "data": data,
+        "media": media,
         "type": type,
         "speaker": speaker,
         "description": description,
         "cover_pic": coverPic,
+        "channel": channel,
     };
 }

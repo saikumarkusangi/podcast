@@ -14,7 +14,7 @@ const RESOURCES = {
 "assets/packages/awesome_snackbar_content/assets/types/success.svg": "e74e73b44b7900099241e5d211d8ddaa",
 "assets/packages/awesome_snackbar_content/assets/types/warning.svg": "fea8151183fa6add29f7dd8c375b1ba7",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"assets/packages/wakelock_web/assets/no_sleep.js": "9c3aa3cd0b217305aa860decab3d9f42",
+"assets/packages/wakelock_web/assets/no_sleep.js": "7748a45cd593f33280669b29c2c8919a",
 "canvaskit/canvaskit.js": "bc4a0f2406aeadaf560b641c5617c18a",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
 "canvaskit/profiling/canvaskit.js": "e275cb040a1d217b0f8f54b8fbd2ef52",

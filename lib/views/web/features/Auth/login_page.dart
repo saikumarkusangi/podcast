@@ -116,6 +116,7 @@ class WebLoginPage extends ConsumerWidget {
                                   .read(buttonhoverProvider.notifier)
                                   .hovered(false),
                               child: InkWell(
+                                onTap:()=> ref.watch(authProvider).signInWithGoogle(context: context),
                                 child: Container(
                                   width: displayWidth(context) / 4,
                                   padding: const EdgeInsets.symmetric(
