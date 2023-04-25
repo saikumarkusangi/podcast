@@ -1,11 +1,11 @@
 {
-    "name": "Podcast",
-    "short_name": "Podcast online",
+    "name": "podcastss",
+    "short_name": "podcastss",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Online free podcast.Listen enjoy,inspire, and post.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
