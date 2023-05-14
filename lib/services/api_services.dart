@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ApiServices {
   //  endpoint url of api
-  String endpoint = "https://podcast.saikumar150.repl.co/";
+  String endpoint = "https://podcastt.onrender.com/";
 
 //  fetch of restaurents data from api
 
